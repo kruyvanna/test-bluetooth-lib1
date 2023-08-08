@@ -7,7 +7,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "ImageUtils.h"
-#import <RNBluetoothEscposPrinter-Swift.h>
+
 @implementation ImageUtils : NSObject
 int p0[] = { 0, 0x80 };
 int p1[] = { 0, 0x40 };
@@ -19,11 +19,6 @@ int p6[] = { 0, 0x02 };
 
 + (UIImage*)imagePadLeft:(NSInteger) left withSource: (UIImage*)source
 {
-    
-    Test *test = [[Test alloc] init];
-    int result = [test add:1 :2];
-    
-    
     CGSize orgSize = [source size];
     CGSize size = CGSizeMake(orgSize.width + [[NSNumber numberWithInteger: left] floatValue], orgSize.height);
     UIGraphicsBeginImageContext(size);

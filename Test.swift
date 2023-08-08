@@ -13,7 +13,7 @@ import CoreGraphics
         return a + b
     }
     
-    @objc func imageToData(_ cgImage: CGImage, grayThreshold: UInt8 = 128) -> [UInt8] {
+    @objc func imageToData(_ cgImage: CGImage, grayThreshold: UInt8 = 128) -> NSData {
         let width = 10
         let height = 10
         
@@ -89,6 +89,7 @@ import CoreGraphics
 
         data.append(contentsOf: rasterImage)
 
-        return data
+        return NSData(bytes: data, length: data.count)
+//        return data
     }
 }

@@ -8,6 +8,8 @@
 #import "ImageUtils.h"
 #import "ZXingObjC.h"
 #import "PrintImageBleWriteDelegate.h"
+#import <RNBluetoothEscposPrinter-Swift.h>
+
 @implementation RNBluetoothEscposPrinter
 
 int WIDTH_58 = 384;
@@ -496,9 +498,15 @@ RCT_EXPORT_METHOD(printPic:(NSString *) base64encodeStr withOptions:(NSDictionar
                 size =[scaled size];
             }
             
-            unsigned char * graImage = [ImageUtils imageToGreyImage:scaled];
-            unsigned char * formatedData = [ImageUtils format_K_threshold:graImage width:size.width height:size.height];
-            NSData *dataToPrint = [ImageUtils eachLinePixToCmd:formatedData nWidth:size.width nHeight:size.height nMode:0];
+//            unsigned char * graImage = [ImageUtils imageToGreyImage:scaled];
+//            unsigned char * formatedData = [ImageUtils format_K_threshold:graImage width:size.width height:size.height];
+//            NSData *dataToPrint = [ImageUtils eachLinePixToCmd:formatedData nWidth:size.width nHeight:size.height nMode:0];
+            
+            Test *test = [[Test alloc] init];
+            CGImageRef cgImage = [srcImage CGImage];
+            NSData *dataToPrint = [test imageToData:cgImage grayThreshold:128];
+            
+            
             PrintImageBleWriteDelegate *delegate = [[PrintImageBleWriteDelegate alloc] init];
             delegate.pendingResolve = resolve;
             delegate.pendingReject = reject;
